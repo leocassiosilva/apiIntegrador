@@ -1,24 +1,53 @@
 package com.locacoes.apirest.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@SuppressWarnings("serial")
+
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "CATEGORIA")
-public class Categoria extends AbstractEntity<Long>{
-
-private String nome;
+public class Categoria implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id_categoria;
+	
+	private String nome;
 	
 	private Float valor;
 	
 	@OneToMany(mappedBy = "categoria")
-	private List<Veiculo> veiculos;
+	@JsonIgnore
+	private List<Veiculo> veiculo;
 
+	public Long getId_categoria() {
+		return id_categoria;
+	}
+
+	public void setId_categoria(Long id_categoria) {
+		this.id_categoria = id_categoria;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public Float getValor() {
 		return valor;
@@ -28,23 +57,16 @@ private String nome;
 		this.valor = valor;
 	}
 
-
-	public String getNome() {
-		return nome;
+	public List<Veiculo> getVeiculo() {
+		return veiculo;
 	}
 
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setVeiculo(List<Veiculo> veiculo) {
+		this.veiculo = veiculo;
 	}
 
-
-	public List<Veiculo> getVeiculos() {
-		return veiculos;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-
-	public void setVeiculos(List<Veiculo> veiculos) {
-		this.veiculos = veiculos;
-	}
+	
 }

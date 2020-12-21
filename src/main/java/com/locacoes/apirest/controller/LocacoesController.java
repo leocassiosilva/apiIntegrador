@@ -20,14 +20,17 @@ public class LocacoesController {
 	@Autowired
 	LocacoesRepository locacoesRepository;
 
-	@GetMapping("/locacoes/{email}")
-	public List<Locacao> listaVeiculos(@PathVariable("email") String email) {
-		return locacoesRepository.buscarPeloUsuario(email);
-	}
+	
 	
 	@PostMapping("/locacao")
 	public Locacao salvarLocacao(@RequestBody Locacao locacao) {
 		return locacoesRepository.save(locacao);
+	}
+	
+	
+	@GetMapping("/locacoes/{id}")
+	public List<Locacao> listaPeloUsuario(@PathVariable("id") Long id) {
+		return locacoesRepository.buscarPeloId(id);
 	}
 
 }

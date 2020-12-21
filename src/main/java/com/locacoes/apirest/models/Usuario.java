@@ -17,8 +17,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 public class Usuario implements  Serializable {
 	

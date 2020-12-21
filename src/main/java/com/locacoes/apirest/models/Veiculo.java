@@ -1,22 +1,31 @@
 package com.locacoes.apirest.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-
-@SuppressWarnings("serial")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "VEICULOS")
-public class Veiculo extends AbstractEntity<Long> {
+public class Veiculo implements Serializable{
 
-   
+	   
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id_veiculo;
+	
 	private String nome;
 
 	private String placa;
@@ -25,37 +34,56 @@ public class Veiculo extends AbstractEntity<Long> {
 	
 	
 	@OneToMany(mappedBy = "veiculo")
+	@JsonIgnore
 	private List<Arquivo> arquivos;
 	
 	
 	@OneToMany(mappedBy = "veiculo")
+	@JsonIgnore
 	private List<Locacao> locacoes;
 	
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_categoria")
+	@JsonIgnore
 	private Categoria categoria;
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_tipoMarca")
+	@JsonIgnore
 	private TipoMarca tipoMarca;
 	
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_locadora")
+	@JsonIgnore
 	private Locadora locadora; 
 
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_locadora_devolucao")
+	@JsonIgnore
 	private Locadora locadoraDevolucao;
 	
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_seguro")
+	@JsonIgnore
 	private Seguro seguro;
 	
 	
 	
+	public Long getId_veiculo() {
+		return id_veiculo;
+	}
+
+	public void setId_veiculo(Long id_veiculo) {
+		this.id_veiculo = id_veiculo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Seguro getSeguro() {
 		return seguro;
 	}
