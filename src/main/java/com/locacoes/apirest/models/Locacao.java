@@ -31,7 +31,6 @@ public class Locacao implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_veiculo")
-	@JsonIgnore
 	private Veiculo veiculo;
 	
 	@ManyToOne(optional = true)
@@ -69,10 +68,6 @@ public class Locacao implements Serializable{
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
-	
-
-	
 
 	public Veiculo getVeiculo() {
 		return veiculo;
