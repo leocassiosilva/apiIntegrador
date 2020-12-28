@@ -31,6 +31,7 @@ public class Locacao implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_veiculo")
+	@JsonIgnore
 	private Veiculo veiculo;
 	
 	@ManyToOne(optional = true)

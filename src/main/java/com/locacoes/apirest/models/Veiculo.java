@@ -39,7 +39,6 @@ public class Veiculo implements Serializable{
 	
 	
 	@OneToMany(mappedBy = "veiculo")
-	@JsonIgnore
 	private List<Locacao> locacoes;
 	
 	
