@@ -25,6 +25,6 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
 			+ "inner join arquivos as ar on(v.id_veiculo = ar.id_veiculo)\n"
 			+ "inner join tipomarca on(v.id_tipo_marca = tipomarca.id_tipo_marca)\n"
 			+ "inner join marca on(tipomarca.id_marca = marca.id_marca)\n"
-			+ "inner join locadora on(v.id_locadora = locadora.id_locadora)\n", nativeQuery = true)
+			+ "inner join locadora on(v.id_locadora = locadora.id_locadora)\n", nativeQuery = true) 
 	List<Veiculo> buscarTodos();
 }
