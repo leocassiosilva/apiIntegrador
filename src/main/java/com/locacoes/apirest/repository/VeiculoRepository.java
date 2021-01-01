@@ -1,5 +1,9 @@
 package com.locacoes.apirest.repository;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+>>>>>>> e5b80e6ace9a8971723a1d1a952a8c7cd05ec8cc
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +23,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
 			+ "inner join marca on(tipomarca.id_marca = marca.id_marca)\n"
 			+ "inner join locadora on(v.id_locadora = locadora.id_locadora)\n" + "where v.id_veiculo = :id", nativeQuery = true)
 	Veiculo buscarVeiculo(@Param("id") Long id);
+<<<<<<< HEAD
 	
 	@Query(name = "buscarTodos", value = "Select * FROM veiculos as v "
 			+ "inner join categoria on (v.id_categoria = categoria.id_categoria)"
@@ -27,4 +32,19 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
 			+ "inner join marca on(tipomarca.id_marca = marca.id_marca)\n"
 			+ "inner join locadora on(v.id_locadora = locadora.id_locadora)\n", nativeQuery = true) 
 	List<Veiculo> buscarTodos();
+=======
+
+	@Query(name = "buscarPorDatas", value = "SELECT * FROM veiculos as v "
+			+ "inner join locadora on (locadora.id_locadora = v.id_locadora) "
+			+ "inner join categoria on(categoria.id_categoria = v.id_categoria)"
+			+ "inner join tipomarca on (tipomarca.id_tipo_marca = v.id_tipo_marca)\r\n"
+			+ "inner join marca on (marca.id_marca = tipomarca.id_marca)\r\n"
+			+ "inner join tipo on (tipo.id_tipo = tipomarca.id_tipo)"
+			+ "inner join local on (local.id_local = locadora.id_local)"
+			+ "where v.id_veiculo NOT IN (SELECT locacao.id_veiculo FROM locacao "
+			+ "where (locacao.data_retirada <= :retirada and locacao.data_retirada >= :retirada) "
+			+ "or (locacao.data_entrega >= :devolucao and locacao.data_entrega <= :devolucao)) and local.nome = :nome", nativeQuery = true)
+	List<Veiculo> buscarVeiculos(LocalDate retirada, LocalDate devolucao, String nome);
+
+>>>>>>> e5b80e6ace9a8971723a1d1a952a8c7cd05ec8cc
 }
