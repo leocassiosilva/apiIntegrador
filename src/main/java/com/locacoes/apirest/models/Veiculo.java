@@ -44,18 +44,16 @@ public class Veiculo implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_categoria")
-	@JsonIgnore
 	private Categoria categoria;
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_tipoMarca")
-	@JsonIgnore
 	private TipoMarca tipoMarca;
 	
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_locadora")
-	@JsonIgnore
+	
 	private Locadora locadora; 
 
 	@ManyToOne(optional = true)
@@ -66,7 +64,6 @@ public class Veiculo implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_seguro")
-	@JsonIgnore
 	private Seguro seguro;
 	
 	

@@ -39,12 +39,7 @@ public class Locadora implements Serializable{
 	private List<Veiculo> locadora;
 	
 	@OneToMany(mappedBy = "locadoraDevolucao")
-	@JsonIgnore
 	private List<Veiculo> locadoraDevolucao;
-	
-
-	
-	
 	
 	public Long getId_locadora() {
 		return id_locadora;

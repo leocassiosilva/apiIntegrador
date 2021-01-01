@@ -21,7 +21,7 @@ public class VeiculoController {
 	
 	@GetMapping("/veiculos")
 	public List<Veiculo> listaVeiculos(){
-		return veiculoRepository.findAll();
+		return veiculoRepository.buscarTodos();
 	}
 	
 	@GetMapping("/veiculos/{id}")

@@ -28,12 +28,10 @@ public class TipoMarca implements Serializable{
 	
 	@ManyToOne
     @JoinColumn(name = "id_marca")
-	@JsonIgnore
     private Marca marca;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_tipo")
-	@JsonIgnore
 	private Tipo tipo;
 	
 	@OneToMany(mappedBy = "tipoMarca")
