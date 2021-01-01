@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
@@ -31,12 +30,10 @@ public class Locacao implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_veiculo")
-	@JsonIgnore
 	private Veiculo veiculo;
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_usuario")
-	@JsonIgnore
 	private Usuario usuario;
 	
 	@DateTimeFormat(iso = ISO.DATE)

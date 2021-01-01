@@ -34,13 +34,12 @@ public class VeiculoController {
 		return veiculoRepository.findById(id);
 	}
 	
-	@GetMapping("/buscar")
+	@GetMapping("/veiculos/buscar/")
 	public ResponseEntity<List<Veiculo>> buscarVeiculos(
 			@RequestParam("dataRetirar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRetirar,
 			@RequestParam("dataDevolver") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataDevolver,
 			@RequestParam("nome") String nome){
-		
-		List<Veiculo> veiculo = veiculoRepository.buscarVeiculos(dataRetirar, dataDevolver, nome);
+		List<Veiculo> veiculo = veiculoRepository.buscarPorDatas(dataRetirar, dataDevolver, nome);
 		return new ResponseEntity<List<Veiculo>>(veiculo, HttpStatus.OK);
 		
 	}
