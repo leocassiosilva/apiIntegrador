@@ -7,37 +7,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "ARQUIVOS")
-public class Arquivo {
+public class Arquivo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id_arquivo;
 	
+	/*Coloquei aqui*/
 	private String nome;
 		
 	
 	@ManyToOne
 	@JoinColumn(name = "id_veiculo")
 	private Veiculo veiculo;
-
-
-	public Arquivo() {
-		
-	}
-
-
-	public Arquivo(String nome, Veiculo veiculo) {
-		this.nome = nome;
-		this.veiculo = veiculo;
-	}
-
 
 	public Long getId_arquivo() {
 		return id_arquivo;

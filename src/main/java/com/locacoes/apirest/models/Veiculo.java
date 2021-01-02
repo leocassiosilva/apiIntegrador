@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,6 +32,10 @@ public class Veiculo implements Serializable{
 	private String placa;
 
 	private String renavan;
+	
+	@Transient
+	private String nomeArquivo;
+
 	
 	
 	@OneToMany(mappedBy = "veiculo")
@@ -74,6 +79,14 @@ public class Veiculo implements Serializable{
 
 	public void setId_veiculo(Long id_veiculo) {
 		this.id_veiculo = id_veiculo;
+	}
+	
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
 	}
 
 	public static long getSerialversionuid() {

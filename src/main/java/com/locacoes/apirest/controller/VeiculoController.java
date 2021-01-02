@@ -1,6 +1,7 @@
 package com.locacoes.apirest.controller;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.locacoes.apirest.repository.VeiculoRepository;
 
 import io.swagger.annotations.ApiOperation;
 
+import com.locacoes.apirest.models.Arquivo;
 import com.locacoes.apirest.models.Veiculo;
 
 @RestController
@@ -40,13 +41,20 @@ public class VeiculoController {
 	}
 	
 	@GetMapping("/veiculos/buscar/{dataRetirar}/{dataDevolver}/{nome}")
-	public ResponseEntity<List<Veiculo>> buscarVeiculos(
+	public List<Veiculo>  buscarVeiculos(
 			@PathVariable("dataRetirar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRetirar,
 			@PathVariable("dataDevolver") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataDevolver,
 			@PathVariable("nome") String nome){
-		List<Veiculo> veiculo = veiculoRepository.buscarPorDatas(dataRetirar, dataDevolver, nome);
-		return new ResponseEntity<List<Veiculo>>(veiculo, HttpStatus.OK);
-		
+		 List<Veiculo> veiculos = veiculoRepository.buscarPorDatas(dataRetirar, dataDevolver, nome);
+		 
+		 
+		 for (Veiculo veiculo2 : veiculos) {
+			 for(Arquivo arquivo : veiculo2.getArquivos()){
+				 veiculo2.setNomeArquivo(arquivo.getNome());
+			 }
+		 }
+		 		 
+		return veiculos;	
 	}
 	
 	@PostMapping("/veiculos/salvar")
