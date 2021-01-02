@@ -39,9 +39,6 @@ public class Usuario implements  Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
 	private LocalDate data;
 	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany
-	private Set<Role> role;
 	
 	@OneToMany(mappedBy = "usuario")
 	private List<Locacao> locacoes;
@@ -86,13 +83,5 @@ public class Usuario implements  Serializable {
 
 	public void setData(LocalDate data) {
 		this.data = data;
-	}
-
-	public Set<Role> getRole() {
-		return role;
-	}
-
-	public void setRole(Set<Role> role) {
-		this.role = role;
 	}	
 }

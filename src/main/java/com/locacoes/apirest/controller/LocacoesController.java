@@ -23,7 +23,6 @@ public class LocacoesController {
 	LocacoesRepository locacoesRepository;
 
 	
-	
 	@PostMapping("/locacao")
 	@ApiOperation(value = "Retorna uma locação salva")
 	public Locacao salvarLocacao(@RequestBody Locacao locacao) {
@@ -34,7 +33,6 @@ public class LocacoesController {
 	@GetMapping("/locacoes/{email}")
 	@ApiOperation(value = "Lista as locações de um usuario")
 	public List<Locacao> listaPeloUsuarioEmail(@PathVariable("email") String email) {
-	System.out.println(email);
 		return locacoesRepository.buscarPeloUsuario(email);
 	}
 

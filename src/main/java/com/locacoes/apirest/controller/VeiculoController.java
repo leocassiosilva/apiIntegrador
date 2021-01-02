@@ -10,11 +10,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.locacoes.apirest.repository.VeiculoRepository;
+
+import io.swagger.annotations.ApiOperation;
+
 import com.locacoes.apirest.models.Veiculo;
 
 @RestController
@@ -34,14 +39,20 @@ public class VeiculoController {
 		return veiculoRepository.findById(id);
 	}
 	
-	@GetMapping("/veiculos/buscar/")
+	@GetMapping("/veiculos/buscar/{dataRetirar}/{dataDevolver}/{nome}")
 	public ResponseEntity<List<Veiculo>> buscarVeiculos(
-			@RequestParam("dataRetirar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRetirar,
-			@RequestParam("dataDevolver") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataDevolver,
-			@RequestParam("nome") String nome){
+			@PathVariable("dataRetirar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRetirar,
+			@PathVariable("dataDevolver") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataDevolver,
+			@PathVariable("nome") String nome){
 		List<Veiculo> veiculo = veiculoRepository.buscarPorDatas(dataRetirar, dataDevolver, nome);
 		return new ResponseEntity<List<Veiculo>>(veiculo, HttpStatus.OK);
 		
+	}
+	
+	@PostMapping("/veiculos/salvar")
+	@ApiOperation(value = "Retorna uma locação salva")
+	public Veiculo salvarVeiculo(@RequestBody Veiculo veiculo) {
+		return veiculoRepository.save(veiculo);
 	}
 	
 }
