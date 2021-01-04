@@ -76,7 +76,7 @@ public class VeiculoController {
 		return seguroRepository.findAll();
 	}
 	
-	@GetMapping("/veiculos/locadora")
+	@GetMapping("/veiculos/locadoras")
 	public List<Locadora> buscarLocadora() {
 		return locadoraRepository.buscarTodas();
 	}
