@@ -3,47 +3,37 @@ package com.locacoes.apirest.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-public class Usuario implements  Serializable {
-	
-	
+public class Usuario implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) // Sever para geração dos id automaticos
-	private long id_usuario; 
-	
+	private long id_usuario;
+
 	private String nome;
-	
+
 	private String email;
-	
+
 	private String senha;
-	
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate data;
-	
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Locacao> locacoes;
-	
-	
+
 	public long getId_usuario() {
 		return id_usuario;
 	}
@@ -75,13 +65,12 @@ public class Usuario implements  Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+
 	public LocalDate getData() {
 		return data;
 	}
 
 	public void setData(LocalDate data) {
 		this.data = data;
-	}	
+	}
 }

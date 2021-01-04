@@ -30,7 +30,6 @@ public class Locadora implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_local")
-	@JsonIgnore
 	private Local localLocadora;
 	
 	
