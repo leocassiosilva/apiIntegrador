@@ -71,6 +71,9 @@ public class Veiculo implements Serializable{
 	@JoinColumn(name = "id_seguro")
 	private Seguro seguro;
 	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "id_opc")
+	private Opcionais opcionais;
 	
 	
 	public Long getId_veiculo() {
