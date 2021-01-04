@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.locacoes.apirest.repository.LocadoraRepository;
+import com.locacoes.apirest.repository.OpcionaisRepository;
 import com.locacoes.apirest.repository.SeguroRepository;
 import com.locacoes.apirest.repository.VeiculoRepository;
 
@@ -20,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 import com.locacoes.apirest.models.Arquivo;
 import com.locacoes.apirest.models.Locadora;
+import com.locacoes.apirest.models.Opcionais;
 import com.locacoes.apirest.models.Seguro;
 import com.locacoes.apirest.models.Veiculo;
 
@@ -35,6 +37,11 @@ public class VeiculoController {
 	
 	@Autowired
 	LocadoraRepository locadoraRepository;
+	
+	
+	@Autowired
+	OpcionaisRepository opcionaisRepository;
+	
 	
 	@GetMapping("/veiculos")
 	public List<Veiculo> listaVeiculos() {
@@ -79,6 +86,11 @@ public class VeiculoController {
 	@GetMapping("/veiculos/locadoras")
 	public List<Locadora> buscarLocadora() {
 		return locadoraRepository.buscarTodas();
+	}
+	
+	@GetMapping("/veiculos/opcionais")
+	public List<Opcionais> buscarOcionais() {
+		return opcionaisRepository.findAll();
 	}
 
 }
