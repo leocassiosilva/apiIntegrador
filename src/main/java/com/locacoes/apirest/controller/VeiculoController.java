@@ -2,6 +2,7 @@ package com.locacoes.apirest.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -91,6 +92,12 @@ public class VeiculoController {
 	@GetMapping("/veiculos/opcionais")
 	public List<Opcionais> buscarOcionais() {
 		return opcionaisRepository.findAll();
+	}
+	
+	@GetMapping("/seguro/{id}")
+	public Optional<Seguro> seguroUnico(@PathVariable("id") Long id) {
+		Optional<Seguro> seguro = seguroRepository.findById(id);
+		return seguro;
 	}
 
 }

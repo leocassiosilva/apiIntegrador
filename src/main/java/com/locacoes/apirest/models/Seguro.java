@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -31,7 +30,6 @@ public class Seguro implements Serializable{
 	private double preco;
 	
 	@OneToMany(mappedBy = "seguro")
-	@JsonIgnore
 	private List<Veiculo> veiculos;
 	
 	public Long getId_seguro() {
