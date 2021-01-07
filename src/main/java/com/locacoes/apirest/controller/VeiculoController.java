@@ -101,8 +101,8 @@ public class VeiculoController {
 	}
 	
 	@GetMapping("/locadora/{id}")
-	public Optional<Locadora> opcionalUnico(@PathVariable("id") Long id) {
-		Optional<Locadora> locadora = locadoraRepository.findById(id);
+	public Locadora opcionalUnico(@PathVariable("id") Long id) {
+		Locadora locadora = locadoraRepository.buscarPeloId(id);
 		return locadora;
 	}
 	
