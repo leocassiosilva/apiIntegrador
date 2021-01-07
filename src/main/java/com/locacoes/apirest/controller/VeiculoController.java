@@ -100,13 +100,13 @@ public class VeiculoController {
 		return seguro;
 	}
 	
-	@GetMapping("/opcional/{id}")
+	@GetMapping("/locadora/{id}")
 	public Optional<Locadora> opcionalUnico(@PathVariable("id") Long id) {
 		Optional<Locadora> locadora = locadoraRepository.findById(id);
 		return locadora;
 	}
 	
-	@GetMapping("/locadora/{id}")
+	@GetMapping("/opcional/{id}")
 	public Optional<Opcionais> locadoraUnico(@PathVariable("id") Long id) {
 		Optional<Opcionais> opcional = opcionaisRepository.findById(id);
 		return opcional;
