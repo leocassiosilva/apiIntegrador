@@ -36,6 +36,10 @@ public class Locacao implements Serializable{
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "id_seguro")
+	private Seguro seguro;
+	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_retirada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataRetirada;
@@ -45,8 +49,15 @@ public class Locacao implements Serializable{
 	private LocalDate dataEntrega;
 	
 	private double valorTotal; 
-
 	
+	public Seguro getSeguro() {
+		return seguro;
+	}
+
+	public void setSeguro(Seguro seguro) {
+		this.seguro = seguro;
+	}
+
 	public Long getId_locacao() {
 		return id_locacao;
 	}

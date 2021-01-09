@@ -30,7 +30,7 @@ public class Seguro implements Serializable{
 	private double preco;
 	
 	@OneToMany(mappedBy = "seguro")
-	private List<Veiculo> veiculos;
+	private List<Locacao> locacoes;
 	
 	public Long getId_seguro() {
 		return id_seguro;
