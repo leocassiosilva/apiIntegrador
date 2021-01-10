@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,10 +77,12 @@ public class VeiculoController {
 
 	@PostMapping("/veiculos/salvar")
 	@ApiOperation(value = "Retorna uma locação salva")
-	public Veiculo salvarVeiculo(@RequestBody Veiculo veiculo) {
-		return veiculoRepository.save(veiculo);
+	public  ResponseEntity<Veiculo> salvarVeiculo(@RequestBody Veiculo veiculo) {		
+		veiculoRepository.save(veiculo);
+		return new ResponseEntity<Veiculo>(veiculo, HttpStatus.OK);
 	}
 	
+
 	@GetMapping("/veiculos/seguros")
 	public List<Seguro> buscarSeguro() {
 		return seguroRepository.findAll();
@@ -95,8 +99,8 @@ public class VeiculoController {
 	}
 	
 	@GetMapping("/seguro/{id}")
-	public Optional<Seguro> seguroUnico(@PathVariable("id") Long id) {
-		Optional<Seguro> seguro = seguroRepository.findById(id);
+	public Seguro seguroUnico(@PathVariable("id") Long id) {
+		Seguro seguro = seguroRepository.buscarPeloId(id);
 		return seguro;
 	}
 	

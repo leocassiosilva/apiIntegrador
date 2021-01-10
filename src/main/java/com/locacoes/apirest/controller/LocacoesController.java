@@ -22,13 +22,11 @@ public class LocacoesController {
 	@Autowired
 	LocacoesRepository locacoesRepository;
 
-	
-	@PostMapping("/locacao")
+	@PostMapping("/confirmar")
 	@ApiOperation(value = "Retorna uma locação salva")
 	public Locacao salvarLocacao(@RequestParam("locacao") Locacao locacao) {
 		return locacoesRepository.save(locacao);
 	}
-	
 
 	@GetMapping("/locacoes/{email}")
 	@ApiOperation(value = "Lista as locações de um usuario")
