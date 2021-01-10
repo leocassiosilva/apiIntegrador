@@ -63,7 +63,6 @@ public class Veiculo implements Serializable{
 
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_locadora_devolucao")
-	@JsonIgnore
 	private Locadora locadoraDevolucao;
 	
 	
@@ -155,5 +154,14 @@ public class Veiculo implements Serializable{
 	public void setTipoMarca(TipoMarca tipoMarca) {
 		this.tipoMarca = tipoMarca;
 	}
+
+	public Opcionais getOpcionais() {
+		return opcionais;
+	}
+
+	public void setOpcionais(Opcionais opcionais) {
+		this.opcionais = opcionais;
+	}
+	
 }
 

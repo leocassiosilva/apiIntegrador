@@ -2,7 +2,6 @@ package com.locacoes.apirest.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -77,7 +76,7 @@ public class VeiculoController {
 
 	@PostMapping("/veiculos/salvar")
 	@ApiOperation(value = "Retorna uma locação salva")
-	public  ResponseEntity<Veiculo> salvarVeiculo(@RequestBody Veiculo veiculo) {		
+	public  ResponseEntity<Veiculo> salvarVeiculo(@RequestBody Veiculo veiculo) {	
 		veiculoRepository.save(veiculo);
 		return new ResponseEntity<Veiculo>(veiculo, HttpStatus.OK);
 	}
@@ -111,8 +110,8 @@ public class VeiculoController {
 	}
 	
 	@GetMapping("/opcional/{id}")
-	public Optional<Opcionais> locadoraUnico(@PathVariable("id") Long id) {
-		Optional<Opcionais> opcional = opcionaisRepository.findById(id);
+	public Opcionais locadoraUnico(@PathVariable("id") Long id) {
+		Opcionais opcional = opcionaisRepository.buscarPeloId(id);
 		return opcional;
 	}
 
