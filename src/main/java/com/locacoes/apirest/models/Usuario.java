@@ -1,7 +1,6 @@
 package com.locacoes.apirest.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -20,7 +18,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) // Sever para geração dos id automaticos
-	private long id_usuario;
+	private long id;
 
 	private String nome;
 
@@ -28,49 +26,92 @@ public class Usuario implements Serializable {
 
 	private String senha;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	private LocalDate data;
+	private String tokenUser;
+
+	private String link;
+
+	
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Locacao> locacoes;
 
-	public long getId_usuario() {
-		return id_usuario;
+
+
+	public long getId() {
+		return id;
 	}
 
-	public void setId_usuario(long id_usuario) {
-		this.id_usuario = id_usuario;
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
+
+
 
 	public String getNome() {
 		return nome;
 	}
 
+
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 	public String getSenha() {
 		return senha;
 	}
 
+
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-	public LocalDate getData() {
-		return data;
+
+
+	public String getTokenUser() {
+		return tokenUser;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+
+
+	public void setTokenUser(String tokenUser) {
+		this.tokenUser = tokenUser;
 	}
+
+
+
+	public String getLink() {
+		return link;
+	}
+
+
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }
