@@ -33,10 +33,10 @@ public class LocacoesController {
 	}
 	
 
-	@GetMapping("/locacoes/{email}")
+	@GetMapping("/locacoes/{id}")
 	@ApiOperation(value = "Lista as locações de um usuario")
-	public List<Locacao> listaPeloUsuarioEmail(@PathVariable("email") String email) {
-		return locacoesRepository.buscarPeloUsuario(email);
+	public List<Locacao> listaPeloUsuario(@PathVariable("id") Long id) {
+		return locacoesRepository.buscarPeloUsuario(id);
 	}
 
 }

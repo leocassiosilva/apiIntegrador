@@ -29,7 +29,6 @@ public class Opcionais implements Serializable{
 	private String adicionais;
 	
 	@OneToMany(mappedBy = "opcionais")
-	@JsonIgnore
 	private List<Veiculo> veiculos;
 	
 	public Long getId_opc() {

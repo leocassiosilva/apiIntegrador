@@ -58,7 +58,6 @@ public class Veiculo implements Serializable{
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_locadora")
-	
 	private Locadora locadora; 
 
 	@ManyToOne(optional = true)
