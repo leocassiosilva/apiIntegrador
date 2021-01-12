@@ -14,7 +14,7 @@ public interface LocacoesRepository extends JpaRepository<Locacao, Long>{
 	/*Metodo para realizar a busca de locações pelo email do usuario*/
 	@Query(name="buscarPeloUsuario", value = "SELECT * FROM locacao"
 			+ " inner join veiculos"
-			+ " on(locacao.id_veiculo = veiculos.id_veiculo) "
+			+ " on(locacao.id_veiculo = veiculos.id_veiculo)"
 			+ " where locacao.id_usuario = :id", nativeQuery = true)
 	List<Locacao> buscarPeloUsuario(@Param("id") Long id);
 	
