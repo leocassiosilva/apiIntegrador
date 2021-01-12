@@ -53,6 +53,7 @@ public class VeiculoController {
 	@GetMapping("/veiculo/{id}")
 	public Veiculo listaveiculoUnico(@PathVariable("id") Long id) {
 		Veiculo veiculo = veiculoRepository.buscarVeiculo(id);
+		System.out.println(veiculo);
 		for (Arquivo arquivo : veiculo.getArquivos()) {
 			veiculo.setNomeArquivo(arquivo.getNome());
 		}

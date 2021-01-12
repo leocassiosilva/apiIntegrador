@@ -31,14 +31,18 @@ public class Locacao implements Serializable{
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_veiculo")
 	private Veiculo veiculo;
-	
-	@ManyToOne(optional = true)
+	// aqui tb
+	//@ManyToOne(optional = true)
 	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+	private Long id_usuario;
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_seguro")
 	private Seguro seguro;
+	
+	
+	//Eiiii, esse usuario ta vindo de uma outra api, ele não fica salvo no meu banco
+	//ok. faça isso
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_retirada", nullable = false, columnDefinition = "DATE")
@@ -85,13 +89,13 @@ public class Locacao implements Serializable{
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
+	
+	public Long getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setId_usuario(Long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public LocalDate getDataRetirada() {

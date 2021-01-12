@@ -24,9 +24,10 @@ public class LocacoesController {
 	@Autowired
 	LocacoesRepository locacoesRepository;
 
-	@PostMapping("/locacoes/confirmar")
+	@PostMapping("/locacoes/salvar")
 	@ApiOperation(value = "Retorna uma locação salva")
 	public ResponseEntity<Locacao> salvarLocacao(@RequestBody Locacao locacao) {
+		System.out.println(locacao.getId_usuario());
 		locacoesRepository.save(locacao);
 		return new ResponseEntity<Locacao>(locacao, HttpStatus.OK);
 	}
