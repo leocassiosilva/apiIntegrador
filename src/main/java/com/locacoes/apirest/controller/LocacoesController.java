@@ -32,6 +32,7 @@ public class LocacoesController {
 		return new ResponseEntity<Locacao>(locacao, HttpStatus.OK);
 	}
 	
+	
 
 	@GetMapping("/locacoes/{id}")
 	@ApiOperation(value = "Lista as locações de um usuario")
